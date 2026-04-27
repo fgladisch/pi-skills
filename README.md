@@ -23,6 +23,7 @@ pi auto-discovers skills from both locations on startup. Run pi and the skills w
 | Skill | When to use |
 |-------|-------------|
 | `brainstorming` | Before any creative work — explores intent, requirements, and design before implementation |
+| `commit` | When the user asks to commit changes — creates git commits following the gitmoji convention |
 | `dispatching-parallel-agents` | When facing 2+ independent tasks that can run without shared state |
 | `executing-plans` | When you have a written implementation plan to execute in a separate session |
 | `finishing-a-development-branch` | When implementation is complete and ready for merge / PR / cleanup |
