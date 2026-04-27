@@ -55,21 +55,37 @@ If changes span multiple logical concerns, suggest splitting into separate commi
 
 ### Step 3: Confirm with User
 
-Present the proposed commit message and the list of files to be committed, then ask the user to confirm. pi has no structured `AskUserQuestion` tool — just present the proposal in chat and wait for a reply. A clean format:
+Present the proposed commit message and the list of files to be committed as a numbered choice, then **stop and wait for the user's reply**. Do not run `git commit` until the user responds.
+
+Use this exact format so the choice is unambiguous and easy to answer with a single character:
 
 ```
 Proposed commit:
 
   <gitmoji> <type>: <description>
 
-Files:
+Files to be committed:
   - path/to/file1
   - path/to/file2
 
-Reply: "yes" to commit, "edit" to modify the message, or "cancel" to abort.
+What would you like to do?
+  [1] Commit as-is
+  [2] Edit the message
+  [3] Edit the file selection
+  [4] Cancel
+
+Reply with 1, 2, 3, or 4 (or the keyword: commit / edit / files / cancel).
 ```
 
-Do not run `git commit` until the user replies with explicit approval.
+Rules for handling the reply:
+
+- **`1` / `commit` / `yes` / `y`** → proceed to Step 4.
+- **`2` / `edit`** → ask the user for the new message (or accept any new message they already provided), then re-show the proposal with the updated message and ask again.
+- **`3` / `files`** → ask which files to include or exclude, restage accordingly, regenerate the diff summary, and re-show the proposal.
+- **`4` / `cancel` / `no` / `n`** → abort. Do not stage or commit anything. Confirm to the user that nothing was committed.
+- Anything else (e.g. "change feat to fix") → treat as edit instructions, apply them, and re-show the proposal.
+
+Always re-confirm after any edit — never auto-commit a modified proposal.
 
 ### Step 4: Create the Commit
 
