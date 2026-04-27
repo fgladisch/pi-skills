@@ -42,14 +42,13 @@ pi auto-discovers skills from both locations on startup. Run pi and the skills w
 
 - Project context lives in `AGENTS.md` (pi's preferred convention) or `CLAUDE.md` (also accepted) — both are automatically loaded by pi.
 - The `subagent` tool comes from the [`pi-subagents`](https://github.com/nicobailon/pi-subagents) extension. Several skills (`subagent-driven-development`, `dispatching-parallel-agents`) require it. Verify your setup with `subagent({ action: "doctor" })`.
-- See `using-superpowers/references/pi-tools.md` for the full mapping from Claude Code tool names to pi equivalents.
-- pi has no `TodoWrite` tool — skills that mention todo tracking work fine; just keep todos inline in your response.
-- pi has no plan mode — when a skill says "enter plan mode," just stay read-only (`read` + non-mutating `bash`) until you have a plan to present.
 
 ## Origin
 
-These skills were adapted from the [Superpowers](https://github.com/obra/superpowers) collection by Jesse Vincent and contributors. Files referencing `superpowers:skill-name` still resolve correctly because pi treats the namespace prefix as part of the cross-reference — you can drop the prefix or leave it, both work.
+Most skills in this repository were adapted from the [Superpowers](https://github.com/obra/superpowers) collection by Jesse Vincent and contributors. Files referencing `superpowers:skill-name` still resolve correctly because pi treats the namespace prefix as part of the cross-reference — you can drop the prefix or leave it, both work.
+
+Other skills (e.g. `commit`) are original to this repository.
 
 ## License
 
-Same as the upstream Superpowers project (refer to the original repository).
+MIT — see [LICENSE](LICENSE). Skills adapted from [Superpowers](https://github.com/obra/superpowers) additionally retain the upstream project's license terms.
