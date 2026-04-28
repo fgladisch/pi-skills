@@ -27,6 +27,7 @@ pi auto-discovers skills from both locations on startup. Run pi and the skills w
 | `dispatching-parallel-agents` | When facing 2+ independent tasks that can run without shared state |
 | `executing-plans` | When you have a written implementation plan to execute in a separate session |
 | `finishing-a-development-branch` | When implementation is complete and ready for merge / PR / cleanup |
+| `grill-me` | When user wants to stress-test a plan, get grilled on their design, or mentions "grill me" |
 | `receiving-code-review` | When receiving code review feedback, before implementing suggestions |
 | `requesting-code-review` | When completing tasks or major features, before merging |
 | `subagent-driven-development` | When executing implementation plans with independent tasks in the current session (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents)) |
