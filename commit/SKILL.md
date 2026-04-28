@@ -55,9 +55,7 @@ If changes span multiple logical concerns, suggest splitting into separate commi
 
 ### Step 3: Confirm with User
 
-Present the proposed commit message and the list of files to be committed as a numbered choice, then **stop and wait for the user's reply**. Do not run `git commit` until the user responds.
-
-Use this exact format so the choice is unambiguous and easy to answer with a single character:
+First, print the proposed commit message and file list as a plain message so the user can see them above the prompt:
 
 ```
 Proposed commit:
@@ -67,23 +65,33 @@ Proposed commit:
 Files to be committed:
   - path/to/file1
   - path/to/file2
-
-What would you like to do?
-  [1] Commit as-is
-  [2] Edit the message
-  [3] Edit the file selection
-  [4] Cancel
-
-Reply with 1, 2, 3, or 4 (or the keyword: commit / edit / files / cancel).
 ```
 
-Rules for handling the reply:
+Then call the `user_select` tool to get the decision. Do not run `git commit` until the tool returns.
 
-- **`1` / `commit` / `yes` / `y`** → proceed to Step 4.
-- **`2` / `edit`** → ask the user for the new message (or accept any new message they already provided), then re-show the proposal with the updated message and ask again.
-- **`3` / `files`** → ask which files to include or exclude, restage accordingly, regenerate the diff summary, and re-show the proposal.
-- **`4` / `cancel` / `no` / `n`** → abort. Do not stage or commit anything. Confirm to the user that nothing was committed.
-- Anything else (e.g. "change feat to fix") → treat as edit instructions, apply them, and re-show the proposal.
+Call it like this (set `allowCustom: true` so the user can type free-form edit instructions):
+
+```json
+{
+  "question": "Commit with this message and file list?",
+  "options": [
+    { "label": "Commit as-is" },
+    { "label": "Edit the message" },
+    { "label": "Edit the file selection" },
+    { "label": "Cancel" }
+  ],
+  "allowCustom": true
+}
+```
+
+Handle the result based on the `answer` field returned by the tool:
+
+- **`Commit as-is`** → proceed to Step 4.
+- **`Edit the message`** → ask the user for the new message via a follow-up prompt (plain message, or another `user_select` call if you have concrete alternatives), then re-run Step 3 with the updated message.
+- **`Edit the file selection`** → ask which files to include or exclude, restage accordingly, regenerate the diff summary, and re-run Step 3.
+- **`Cancel`** → abort. Do not stage or commit anything. Confirm to the user that nothing was committed.
+- **Custom answer** (`wasCustom: true`) → treat the typed text as edit instructions (e.g. "change feat to fix"), apply them, and re-run Step 3.
+- **Cancelled** (`answer: null`, `cancelled: true`, e.g. user pressed Esc) → abort like `Cancel`.
 
 Always re-confirm after any edit — never auto-commit a modified proposal.
 
