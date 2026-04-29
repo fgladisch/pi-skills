@@ -13,7 +13,32 @@ Run `git diff` (or `git diff HEAD` if there are staged changes) to see what chan
 
 ## Phase 2: Launch Three Review Agents in Parallel
 
-Use the Agent tool to launch all three agents concurrently in a single message. Pass each agent the full diff so it has the complete context.
+Use the `subagent` tool to launch all three reviewers concurrently in a single call. Each task gets the full diff plus its review angle. Use the `reviewer` builtin with explicit "report findings only, do not edit files" instructions so the main agent stays the single writer.
+
+```typescript
+subagent({
+  tasks: [
+    {
+      agent: "reviewer",
+      task: "Code reuse review. Report findings only, do not edit files.\n\nDiff:\n<paste full diff>\n\n<paste Agent 1 instructions below>",
+      output: "reuse-findings.md"
+    },
+    {
+      agent: "reviewer",
+      task: "Code quality review. Report findings only, do not edit files.\n\nDiff:\n<paste full diff>\n\n<paste Agent 2 instructions below>",
+      output: "quality-findings.md"
+    },
+    {
+      agent: "reviewer",
+      task: "Efficiency review. Report findings only, do not edit files.\n\nDiff:\n<paste full diff>\n\n<paste Agent 3 instructions below>",
+      output: "efficiency-findings.md"
+    }
+  ],
+  concurrency: 3
+})
+```
+
+If the diff is large, write it to a temp file first and reference it by path in each task instead of inlining.
 
 ### Agent 1: Code Reuse Review
 
