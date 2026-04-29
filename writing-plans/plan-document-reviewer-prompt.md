@@ -6,7 +6,7 @@ Use this template when dispatching a plan document reviewer subagent.
 
 **Dispatch after:** The complete plan is written.
 
-In pi, dispatch with `subagent({ agent: "reviewer", task: <prompt below>, context: "fresh" })` (from the `pi-subagents` extension). In Claude Code, use the `Task` tool with the `general-purpose` agent. The prompt body is:
+In pi, dispatch with `subagent({ agent: "reviewer", task: <prompt below>, context: "fresh" })` (from the `pi-subagents` extension). The prompt body is:
 
 ```
 Reviewer prompt:

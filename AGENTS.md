@@ -33,6 +33,6 @@ If any of those checks fail, fix `README.md` (or the skill) before considering t
 
 ## Pi conventions used in this repo
 
-- pi auto-loads `AGENTS.md` (this file) and `CLAUDE.md` as project context. Prefer `AGENTS.md`.
-- Skills are discovered from `~/.agents/skills` and `~/.pi/agent/skills`.
-- Tool names in skills follow pi's tool set (`read`, `bash`, `edit`, `write`, `mcp`, `subagent`). When porting skills from Claude Code or Superpowers, translate tool names accordingly — `using-superpowers/references/pi-tools.md` has the mapping.
+- pi auto-loads `AGENTS.md` as project context. Prefer `AGENTS.md` for repository instructions.
+- Skills are discovered from `~/.agents/skills` and `~/.pi/agent/skills` globally, plus `.agents/skills` and `.pi/skills` in projects.
+- Tool names in skills follow pi's tool set (`read`, `bash`, `edit`, `write`, `mcp`, `subagent`).

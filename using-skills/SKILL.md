@@ -1,6 +1,6 @@
 ---
-name: using-superpowers
-description: Use when starting any conversation - establishes how to find and use skills, requiring skill invocation (read SKILL.md, or platform Skill tool) before ANY response including clarifying questions
+name: using-skills
+description: Use when starting any conversation - establishes how to find and use pi skills, requiring skill invocation by reading SKILL.md or using /skill:name before ANY response including clarifying questions
 ---
 
 <SUBAGENT-STOP>
@@ -17,29 +17,30 @@ This is not negotiable. This is not optional. You cannot rationalize your way ou
 
 ## Instruction Priority
 
-Superpowers skills override default system prompt behavior, but **user instructions always take precedence**:
+pi skills override default system prompt behavior, but **user instructions always take precedence**:
 
-1. **User's explicit instructions** (AGENTS.md, CLAUDE.md, GEMINI.md, direct requests) — highest priority
-2. **Superpowers skills** — override default system behavior where they conflict
+1. **User's explicit instructions** (AGENTS.md, direct requests) — highest priority
+2. **pi skills** — override default system behavior where they conflict
 3. **Default system prompt** — lowest priority
 
-If AGENTS.md, CLAUDE.md, or GEMINI.md says "don't use TDD" and a skill says "always use TDD," follow the user's instructions. The user is in control.
+If AGENTS.md says "don't use TDD" and a skill says "always use TDD," follow the user's instructions. The user is in control.
 
-## How to Access Skills
+## How to Access Skills in pi
 
-**In pi:** Use the `read` tool on the skill's `SKILL.md` file (the path is provided in the `<available_skills>` block of the system prompt). Then follow its instructions directly. Skills can also be invoked as `/skill:name` commands when `enableSkillCommands` is on.
+Use the `read` tool on the skill's `SKILL.md` file. The path is provided in the `<available_skills>` block of the system prompt.
 
-**In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to you—follow it directly. Never use the Read tool on skill files.
+Skills can also be invoked as `/skill:name` commands when `enableSkillCommands` is on.
 
-**In Copilot CLI:** Use the `skill` tool. Skills are auto-discovered from installed plugins. The `skill` tool works the same as Claude Code's `Skill` tool.
+## pi Skill Discovery
 
-**In Gemini CLI:** Skills activate via the `activate_skill` tool. Gemini loads skill metadata at session start and activates the full content on demand.
+pi discovers skills from:
 
-**In other environments:** Check your platform's documentation for how skills are loaded.
+- `~/.pi/agent/skills/` and `~/.agents/skills/` (global)
+- `.pi/skills/` and `.agents/skills/` in `cwd` and ancestor directories
+- package skills and paths configured in `settings.json`
+- explicit `--skill <path>` CLI flags
 
-## Platform Adaptation
-
-Skills use generic tool names that match pi's defaults (`read`, `write`, `edit`, `bash`, `subagent`). For other harnesses see `references/pi-tools.md` (pi), `references/copilot-tools.md` (Copilot CLI), `references/codex-tools.md` (Codex) for tool equivalents. Gemini CLI users get the tool mapping loaded automatically via GEMINI.md.
+Full skill content is progressive-disclosure: only names and descriptions are always in context. Read the full `SKILL.md` before using a skill.
 
 # Using Skills
 
@@ -101,7 +102,7 @@ These thoughts mean STOP—you're rationalizing:
 When multiple skills could apply, use this order:
 
 1. **Process skills first** (brainstorming, debugging) - these determine HOW to approach the task
-2. **Implementation skills second** (frontend-design, mcp-builder) - these guide execution
+2. **Implementation skills second** - these guide execution
 
 "Let's build X" → brainstorming first, then implementation skills.
 "Fix this bug" → debugging first, then domain-specific skills.

@@ -4,9 +4,9 @@ Use this template when dispatching a spec document reviewer subagent.
 
 **Purpose:** Verify the spec is complete, consistent, and ready for implementation planning.
 
-**Dispatch after:** Spec document is written to docs/superpowers/specs/
+**Dispatch after:** Spec document is written to docs/pi/specs/
 
-In pi, dispatch with `subagent({ agent: "reviewer", task: <prompt below>, context: "fresh" })` (from the `pi-subagents` extension). In Claude Code, use the `Task` tool with the `general-purpose` agent. The prompt body is:
+In pi, dispatch with `subagent({ agent: "reviewer", task: <prompt below>, context: "fresh" })` (from the `pi-subagents` extension). The prompt body is:
 
 ```
 Reviewer prompt:

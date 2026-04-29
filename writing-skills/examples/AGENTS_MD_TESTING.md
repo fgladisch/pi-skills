@@ -2,7 +2,7 @@
 
 Testing different documentation variants to find what actually makes agents discover and use skills under pressure.
 
-> Note: pi loads `AGENTS.md` (or `CLAUDE.md`) as the project context file. The variants below are written for pi's `AGENTS.md`, but the same patterns apply to `CLAUDE.md` in Claude Code or any other project-memory convention.
+> Note: pi loads `AGENTS.md` as the project context file. The variants below test pi-specific `AGENTS.md` skill-discovery instructions.
 
 ## Test Scenarios
 

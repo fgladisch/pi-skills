@@ -101,7 +101,7 @@ digraph process {
     "Read plan once, extract every task with full text, note context, create todo list" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Dispatch reviewer for whole-branch final review" [shape=box];
-    "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
+    "Use finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan once, extract every task with full text, note context, create todo list" -> "Dispatch worker (./implementer-prompt.md as task content)";
     "Dispatch worker (./implementer-prompt.md as task content)" -> "Worker asks questions?";
@@ -120,7 +120,7 @@ digraph process {
     "Mark task complete in your todo list" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch worker (./implementer-prompt.md as task content)" [label="yes"];
     "More tasks remain?" -> "Dispatch reviewer for whole-branch final review" [label="no"];
-    "Dispatch reviewer for whole-branch final review" -> "Use superpowers:finishing-a-development-branch";
+    "Dispatch reviewer for whole-branch final review" -> "Use finishing-a-development-branch";
 }
 ```
 
@@ -198,19 +198,17 @@ subagent({
 ```
 
 If the final reviewer flags blockers, route them back through the appropriate
-task's worker. Otherwise, hand off to `superpowers:finishing-a-development-branch`.
+task's worker. Otherwise, hand off to `finishing-a-development-branch`.
 
 ## Model Selection
 
-`pi-subagents` builtins have sensible defaults (most are
-`openai-codex/gpt-5.5`). Override per call only when the task complexity
-warrants it.
+`pi-subagents` builtins have sensible defaults. Override per call only when task complexity warrants it.
 
 | Task complexity | Override |
 |---|---|
-| Mechanical (1-2 files, complete spec, code provided in plan) | Cheaper model: `model: "openai-codex/gpt-5.4-mini"` or `model: "openai-codex/gpt-5.4"` |
+| Mechanical (1-2 files, complete spec, code provided in plan) | Use a cheaper pi model configured in your environment |
 | Integration (multi-file, judgment, debugging) | Default `worker` / `reviewer` model |
-| Architecture / design / cross-cutting review | `model: "anthropic/claude-sonnet-4"` or another capable model |
+| Architecture / design / cross-cutting review | Use a more capable pi model and higher thinking level |
 
 For persistent overrides across a project, edit `~/.pi/agent/settings.json`:
 
@@ -218,8 +216,8 @@ For persistent overrides across a project, edit `~/.pi/agent/settings.json`:
 {
   "subagents": {
     "agentOverrides": {
-      "worker": { "model": "openai-codex/gpt-5.4" },
-      "reviewer": { "model": "anthropic/claude-sonnet-4", "thinking": "high" }
+      "worker": { "model": "<fast-pi-model>" },
+      "reviewer": { "model": "<capable-pi-model>", "thinking": "high" }
     }
   }
 }
@@ -244,8 +242,8 @@ augmented by the new context.
 
 **BLOCKED:** The worker cannot complete the task. Assess the blocker:
 1. If it's a context problem, provide more context and re-dispatch with the same model.
-2. If the task requires more reasoning, re-dispatch with a more capable model
-   (`subagent({ agent: "worker", task: "...", model: "anthropic/claude-sonnet-4" })`).
+2. If the task requires more reasoning, re-dispatch with a more capable pi model
+   (`subagent({ agent: "worker", task: "...", model: "<capable-pi-model>" })`).
 3. If the task is too large, break it into smaller pieces — update the plan, then dispatch each piece.
 4. If the plan itself is wrong, escalate to the human.
 
@@ -332,7 +330,7 @@ with placeholders filled in.
 ```
 You: I'm using Subagent-Driven Development to execute this plan.
 
-[Read plan file once: docs/superpowers/plans/feature-plan.md]
+[Read plan file once: docs/pi/plans/feature-plan.md]
 [Extract all 5 tasks with full text and context]
 [Create todo list with all tasks]
 
@@ -352,7 +350,7 @@ Worker: "Before I begin - should the hook be installed at user or system level?"
 You: [re-dispatch with answer added to context]
 subagent({
   agent: "worker",
-  task: "<original prompt> ... ANSWER: User level (~/.config/superpowers/hooks/)",
+  task: "<original prompt> ... ANSWER: User level (~/.config/pi/hooks/)",
   context: "fresh"
 })
 
@@ -421,13 +419,13 @@ Code reviewer (re-review): ✅ Approved
 # After all tasks
 subagent({
   agent: "reviewer",
-  task: "Final review of feature/<branch> against docs/superpowers/plans/feature-plan.md. ...",
+  task: "Final review of feature/<branch> against docs/pi/plans/feature-plan.md. ...",
   context: "fresh"
 })
 
 Final reviewer: All requirements met, ready to merge.
 
-[Hand off to superpowers:finishing-a-development-branch]
+[Hand off to finishing-a-development-branch]
 
 Done!
 ```
@@ -500,14 +498,14 @@ Done!
 ## Integration
 
 **Required workflow skills:**
-- **superpowers:using-git-worktrees** — REQUIRED if your plan touches code on a busy branch; set up an isolated workspace before starting.
-- **superpowers:writing-plans** — Creates the plan this skill executes.
-- **superpowers:requesting-code-review** — Code review template referenced by `./code-quality-reviewer-prompt.md`.
-- **superpowers:finishing-a-development-branch** — Run after all tasks plus the final review pass.
+- **using-git-worktrees** — REQUIRED if your plan touches code on a busy branch; set up an isolated workspace before starting.
+- **writing-plans** — Creates the plan this skill executes.
+- **requesting-code-review** — Code review template referenced by `./code-quality-reviewer-prompt.md`.
+- **finishing-a-development-branch** — Run after all tasks plus the final review pass.
 
 **Skills the dispatched agents lean on:**
-- **superpowers:test-driven-development** — Workers follow TDD per task.
+- **test-driven-development** — Workers follow TDD per task.
 - **pi-subagents** — Tool reference for `subagent({...})` calls; read it first if you're unsure about a parameter.
 
 **Alternative workflow:**
-- **superpowers:executing-plans** — Use for a separate-session execution model instead of same-session subagent dispatch.
+- **executing-plans** — Use for a separate-session execution model instead of same-session subagent dispatch.

@@ -30,7 +30,7 @@ flag, then this review re-runs against the new SHAs.
 ## Use the Standard Code Review Template
 
 Apply the review structure from
-`superpowers:requesting-code-review/code-reviewer.md` (read it if you have
+`requesting-code-review/code-reviewer.md` (read it if you have
 not already), with the inputs below.
 
 ```

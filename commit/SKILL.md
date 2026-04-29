@@ -25,7 +25,7 @@ Format: `<gitmoji> <type>: <description>`
 | 🔥      | remove   | Removing code or files   |
 | 🔧      | chore    | Configuration/tooling    |
 
-> If the project defines its own git workflow (e.g. `agent_docs/git-workflow.md`, `CONTRIBUTING.md`, or rules inside `AGENTS.md` / `CLAUDE.md`), follow that instead of the table above.
+> If the project defines its own git workflow (e.g. `agent_docs/git-workflow.md`, `CONTRIBUTING.md`, or rules inside `AGENTS.md`), follow that instead of the table above.
 
 ## Execution Steps
 

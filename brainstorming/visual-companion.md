@@ -37,19 +37,18 @@ The server watches a directory for HTML files and serves the newest one to the b
 scripts/start-server.sh --project-dir /path/to/project
 
 # Returns: {"type":"server-started","port":52341,"url":"http://localhost:52341",
-#           "screen_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/content",
-#           "state_dir":"/path/to/project/.superpowers/brainstorm/12345-1706000000/state"}
+#           "screen_dir":"/path/to/project/.pi/brainstorm/12345-1706000000/content",
+#           "state_dir":"/path/to/project/.pi/brainstorm/12345-1706000000/state"}
 ```
 
 Save `screen_dir` and `state_dir` from the response. Tell user to open the URL.
 
-**Finding connection info:** The server writes its startup JSON to `$STATE_DIR/server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.superpowers/brainstorm/` for the session directory.
+**Finding connection info:** The server writes its startup JSON to `$STATE_DIR/server-info`. If you launched the server in the background and didn't capture stdout, read that file to get the URL and port. When using `--project-dir`, check `<project>/.pi/brainstorm/` for the session directory.
 
-**Note:** Pass the project root as `--project-dir` so mockups persist in `.superpowers/brainstorm/` and survive server restarts. Without it, files go to `/tmp` and get cleaned up. Remind the user to add `.superpowers/` to `.gitignore` if it's not already there.
+**Note:** Pass the project root as `--project-dir` so mockups persist in `.pi/brainstorm/` and survive server restarts. Without it, files go to `/tmp` and get cleaned up. Remind the user to add `.pi/brainstorm/` to `.gitignore` if it's not already there.
 
-**Launching the server by platform:**
+**Launching the server in pi:**
 
-**pi (macOS / Linux):**
 ```bash
 # pi's bash tool runs commands synchronously, so launch the server detached
 # so it survives across conversation turns. The default mode already does
@@ -57,38 +56,10 @@ Save `screen_dir` and `state_dir` from the response. Tell user to open the URL.
 # be safe:
 nohup scripts/start-server.sh --project-dir /path/to/project >/tmp/brainstorm-server.log 2>&1 &
 ```
-Then read `$STATE_DIR/server-info` on the next turn to get the URL and port. If you don't know `$STATE_DIR` yet, check `<project>/.superpowers/brainstorm/` for the most recent session directory.
 
-**Claude Code (macOS / Linux):**
-```bash
-# Default mode works — the script backgrounds the server itself
-scripts/start-server.sh --project-dir /path/to/project
-```
+Then read `$STATE_DIR/server-info` on the next turn to get the URL and port. If you don't know `$STATE_DIR` yet, check `<project>/.pi/brainstorm/` for the most recent session directory.
 
-**Claude Code (Windows):**
-```bash
-# Windows auto-detects and uses foreground mode, which blocks the tool call.
-# Use run_in_background: true on the Bash tool call so the server survives
-# across conversation turns.
-scripts/start-server.sh --project-dir /path/to/project
-```
-When calling this via the Bash tool, set `run_in_background: true`. Then read `$STATE_DIR/server-info` on the next turn to get the URL and port.
-
-**Codex:**
-```bash
-# Codex reaps background processes. The script auto-detects CODEX_CI and
-# switches to foreground mode. Run it normally — no extra flags needed.
-scripts/start-server.sh --project-dir /path/to/project
-```
-
-**Gemini CLI:**
-```bash
-# Use --foreground and set is_background: true on your shell tool call
-# so the process survives across turns
-scripts/start-server.sh --project-dir /path/to/project --foreground
-```
-
-**Other environments:** The server must keep running in the background across conversation turns. If your environment reaps detached processes, use `--foreground` and launch the command with your platform's background execution mechanism.
+If your terminal setup does not preserve detached processes, use `--foreground` and keep that process running in a separate terminal or tmux pane.
 
 If the URL is unreachable from your browser (common in remote/containerized setups), bind a non-loopback host:
 
@@ -289,7 +260,7 @@ If `$STATE_DIR/events` doesn't exist, the user didn't interact with the browser 
 scripts/stop-server.sh $SESSION_DIR
 ```
 
-If the session used `--project-dir`, mockup files persist in `.superpowers/brainstorm/` for later reference. Only `/tmp` sessions get deleted on stop.
+If the session used `--project-dir`, mockup files persist in `.pi/brainstorm/` for later reference. Only `/tmp` sessions get deleted on stop.
 
 ## Reference
 
