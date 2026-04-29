@@ -30,6 +30,7 @@ pi auto-discovers skills from both locations on startup. Run pi and the skills w
 | `grill-me` | When user wants to stress-test a plan, get grilled on their design, or mentions "grill me" |
 | `receiving-code-review` | When receiving code review feedback, before implementing suggestions |
 | `requesting-code-review` | When completing tasks or major features, before merging |
+| `simplify` | After making code changes, before committing — reviews the diff for reuse, quality, and efficiency in parallel and fixes findings |
 | `subagent-driven-development` | When executing implementation plans with independent tasks in the current session (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents)) |
 | `systematic-debugging` | When encountering any bug, test failure, or unexpected behavior |
 | `test-driven-development` | When implementing any feature or bugfix |
