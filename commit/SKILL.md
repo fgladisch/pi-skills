@@ -55,25 +55,15 @@ If changes span multiple logical concerns, suggest splitting into separate commi
 
 ### Step 3: Confirm with User
 
-First, print the proposed commit message and file list as a plain message so the user can see them above the prompt:
+Use a single `user_select` call as the confirmation step. Do **not** send a separate plain-text confirmation message before the tool call.
 
-```
-Proposed commit:
-
-  <gitmoji> <type>: <description>
-
-Files to be committed:
-  - path/to/file1
-  - path/to/file2
-```
-
-Then call the `user_select` tool to get the decision. Do not run `git commit` until the tool returns.
+Put the proposed commit message and file list directly in the tool prompt, then ask for the decision. Do not run `git commit` until the tool returns.
 
 Call it like this (set `allowCustom: true` so the user can type free-form edit instructions):
 
 ```json
 {
-  "question": "Commit with this message and file list?",
+  "question": "Proposed commit:\n\n  <gitmoji> <type>: <description>\n\nFiles to be committed:\n  - path/to/file1\n  - path/to/file2\n\nCommit with this message and file list?",
   "options": [
     { "label": "Commit as-is" },
     { "label": "Edit the message" },
