@@ -7,4 +7,6 @@ Interview me relentlessly about every aspect of this plan until we reach a share
 
 Ask the questions one at a time.
 
+Use the `user_select` tool to ask questions.
+
 If a question can be answered by exploring the codebase, explore the codebase instead.
