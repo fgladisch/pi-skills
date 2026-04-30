@@ -26,25 +26,20 @@ for coordination work.
 digraph when_to_use {
     "Have implementation plan?" [shape=diamond];
     "Tasks mostly independent?" [shape=diamond];
-    "Stay in this session?" [shape=diamond];
     "subagent-driven-development" [shape=box];
-    "executing-plans" [shape=box];
     "Manual execution or brainstorm first" [shape=box];
 
     "Have implementation plan?" -> "Tasks mostly independent?" [label="yes"];
     "Have implementation plan?" -> "Manual execution or brainstorm first" [label="no"];
-    "Tasks mostly independent?" -> "Stay in this session?" [label="yes"];
+    "Tasks mostly independent?" -> "subagent-driven-development" [label="yes"];
     "Tasks mostly independent?" -> "Manual execution or brainstorm first" [label="no - tightly coupled"];
-    "Stay in this session?" -> "subagent-driven-development" [label="yes"];
-    "Stay in this session?" -> "executing-plans" [label="no - parallel session"];
 }
 ```
 
-**vs. Executing Plans (parallel session):**
-- Same session (no context switch)
+**Why this workflow:**
 - Fresh subagent per task (no context pollution)
 - Two-stage review after each task: spec compliance first, then code quality
-- Faster iteration (no human-in-loop between tasks)
+- Fast iteration with quality gates
 
 ## Agent Selection
 
@@ -438,7 +433,7 @@ Done!
 - Reviewers stay independent (`context: "fresh"` keeps them adversarial)
 - Worker can ask questions (before AND during work)
 
-**vs. Executing Plans (parallel session):**
+**Workflow summary:**
 - Same session (no handoff to a new chat)
 - Continuous progress (no waiting between tasks)
 - Review checkpoints automatic
@@ -507,5 +502,3 @@ Done!
 - **test-driven-development** — Workers follow TDD per task.
 - **pi-subagents** — Tool reference for `subagent({...})` calls; read it first if you're unsure about a parameter.
 
-**Alternative workflow:**
-- **executing-plans** — Use for a separate-session execution model instead of same-session subagent dispatch.
