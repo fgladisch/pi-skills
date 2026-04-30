@@ -8,12 +8,14 @@ Skills in this repository use pi tool names directly.
 | Create or overwrite files | `write` |
 | Edit files by exact replacement | `edit` |
 | Run shell commands | `bash` |
-| Search files | `bash` with `rg`, `grep`, `find`, or `ls` |
+| Search files directly | `bash` with `rg`, `grep`, `find`, or `ls` |
+| Discover files for a broad task | `subagent({ agent: "scout", task: "Map relevant files for <topic> and summarize paths" })` |
 | Invoke a skill | `read` the skill's `SKILL.md`, or use `/skill:name` |
 | Track work | inline checklist, a TODO file, or a pi extension if installed |
 | Dispatch subagents | `subagent` from the `pi-subagents` extension |
 | Parallel subagents | `subagent({ tasks: [...] })` |
-| Async subagents | `subagent({ agent: "worker", task: "...", async: true })` plus `subagent({ action: "status", id })` |
+| Async subagents | `subagent({ agent: "worker", task: "...", async: true })` + `subagent({ action: "status", id })` |
+| List available agents/chains | `subagent({ action: "list" })` |
 
 ## Context Files
 
@@ -36,11 +38,7 @@ pi discovers skills from:
 
 ## Subagent Dispatch
 
-The `pi-subagents` extension provides the `subagent` tool. Verify it is healthy with:
-
-```typescript
-subagent({ action: "doctor" })
-```
+The `pi-subagents` extension provides the `subagent` tool.
 
 Common patterns:
 
@@ -48,13 +46,28 @@ Common patterns:
 // Single subagent
 subagent({ agent: "worker", task: "<prompt>", context: "fresh" })
 
+// Scout-first file discovery / recon
+subagent({
+  agent: "scout",
+  task: "Map files and entry points for <topic>; return key paths and why they matter"
+})
+
 // Parallel fan-out
 subagent({
   tasks: [
-    { agent: "worker", task: "<prompt A>" },
-    { agent: "worker", task: "<prompt B>" }
+    { agent: "scout", task: "Map auth flow files" },
+    { agent: "reviewer", task: "Review API client changes" }
   ],
   concurrency: 2
+})
+
+// Sequential handoff chain
+subagent({
+  chain: [
+    { agent: "scout", task: "Gather codebase context for <topic>" },
+    { agent: "planner", task: "Create plan from {previous}" },
+    { agent: "worker", task: "Implement approved plan from {previous}" }
+  ]
 })
 
 // Worktree-isolated parallel writes
@@ -65,7 +78,9 @@ subagent({ agent: "worker", task: "<prompt>", async: true })
 subagent({ action: "status", id: "<run-id>" })
 ```
 
-See the `pi-subagents` skill (`/skill:pi-subagents`) for chains, builtins, and control signals.
+Use `scout` for broad discovery, then switch to targeted `bash`/`read` inspection.
+
+See the `pi-subagents` skill (`/skill:pi-subagents`) for builtins, chain variables (`{task}`, `{previous}`, `{chain_dir}`), control signals, and intercom workflows.
 
 ## Read-only Research
 

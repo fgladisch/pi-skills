@@ -1,6 +1,6 @@
 ---
 name: using-skills
-description: Use when starting any conversation - establishes how to find and use pi skills, requiring skill invocation by reading SKILL.md or using /skill:name before ANY response including clarifying questions
+description: Use when starting any conversation - establishes how to find and use pi skills, requiring skill invocation before ANY response including clarifying questions
 ---
 
 <SUBAGENT-STOP>
@@ -41,6 +41,12 @@ pi discovers skills from:
 - explicit `--skill <path>` CLI flags
 
 Full skill content is progressive-disclosure: only names and descriptions are always in context. Read the full `SKILL.md` before using a skill.
+
+## pi Tool Reference
+
+This repository is pi-only. Skills use pi tool names directly.
+
+For canonical tool mappings, subagent patterns, and environment detection snippets, read `references/pi-tools.md`.
 
 # Using Skills
 
