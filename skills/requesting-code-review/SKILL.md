@@ -31,7 +31,7 @@ HEAD_SHA=$(git rev-parse HEAD)
 
 **2. Dispatch code-reviewer subagent:**
 
-Dispatch a `reviewer` subagent with the template at `code-reviewer.md`:
+Dispatch a `reviewer` subagent with the template at `./code-reviewer.md`:
 
 ```typescript
 subagent({ agent: "reviewer", task: <filled template>, context: "fresh" })
@@ -108,4 +108,4 @@ You: [Fix progress indicators]
 - Show code/tests that prove it works
 - Request clarification
 
-See template at: `code-reviewer.md`
+See template at: `./code-reviewer.md` (resolve relative to this `SKILL.md`).
