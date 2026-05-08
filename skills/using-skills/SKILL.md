@@ -25,28 +25,13 @@ pi skills override default system prompt behavior, but **user instructions alway
 
 If AGENTS.md says "don't use TDD" and a skill says "always use TDD," follow the user's instructions. The user is in control.
 
-## How to Access Skills in pi
+## Progressive Disclosure
 
-Use the `read` tool on the skill's `SKILL.md` file. The path is provided in the `<available_skills>` block of the system prompt.
+Skill descriptions are discovery hints only. Read the full `SKILL.md` before using a skill.
 
-Skills can also be invoked as `/skill:name` commands when `enableSkillCommands` is on.
+## Read-only Research
 
-## pi Skill Discovery
-
-pi discovers skills from:
-
-- `~/.pi/agent/skills/` and `~/.agents/skills/` (global)
-- `.pi/skills/` and `.agents/skills/` in `cwd` and ancestor directories
-- package skills and paths configured in `settings.json`
-- explicit `--skill <path>` CLI flags
-
-Full skill content is progressive-disclosure: only names and descriptions are always in context. Read the full `SKILL.md` before using a skill.
-
-## pi Tool Reference
-
-This repository is pi-only. Skills use pi tool names directly.
-
-For canonical tool mappings, subagent patterns, and environment detection snippets, read `references/pi-tools.md`.
+pi has no built-in plan mode. When a workflow says to plan first, announce that you are researching read-only and stick to `read` + non-mutating `bash` commands until you have a plan to present.
 
 # Using Skills
 
