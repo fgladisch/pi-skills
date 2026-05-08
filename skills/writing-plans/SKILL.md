@@ -13,7 +13,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
-**Context:** This should be run in a dedicated worktree (created by brainstorming skill).
+**Context:** Use a dedicated worktree when isolation is needed; set it up with `using-git-worktrees` before implementation.
 
 **Save plans to:** `docs/pi/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
