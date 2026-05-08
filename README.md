@@ -85,7 +85,7 @@ Some skills depend on extension-provided tools. Install these before using the r
 | Extension                                                                              | Tool(s) provided | Required by skills                                                                                                   |
 | -------------------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------- |
 | [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select) | `user_select`    | `brainstorming`, `commit`, `grill-me`                                                                                |
-| [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development`, `writing-skills` |
+| [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development`, `using-skills`, `writing-skills` |
 
 ## Pi-specific notes
 

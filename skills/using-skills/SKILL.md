@@ -33,6 +33,17 @@ Skill descriptions are discovery hints only. Read the full `SKILL.md` before usi
 
 pi has no built-in plan mode. When a workflow says to plan first, announce that you are researching read-only and stick to `read` + non-mutating `bash` commands until you have a plan to present.
 
+For fast local codebase recon, also use `scout` via the `subagent` tool. Ask it for relevant files, entry points, data flow, risks, and where another agent should start.
+
+Example:
+
+```typescript
+subagent({
+  agent: "scout",
+  task: "Map the auth flow: relevant files, entry points, data flow, risks, and where an implementation agent should start. Read-only recon only."
+})
+```
+
 # Using Skills
 
 ## The Rule
