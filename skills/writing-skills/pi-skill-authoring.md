@@ -63,8 +63,8 @@ Keep operational detail in the body, not the description.
 Reference supporting files by relative path from the skill directory:
 
 ```markdown
-Read `references/api.md` for the full API surface.
-Run `scripts/check.sh` when validating this workflow.
+Read `./references/api.md` for the full API surface.
+Run `./scripts/check.sh` when validating this workflow.
 ```
 
 When using those files, resolve the path against the directory containing `SKILL.md`.

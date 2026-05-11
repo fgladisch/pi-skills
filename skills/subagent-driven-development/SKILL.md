@@ -126,7 +126,7 @@ digraph process {
 ```typescript
 subagent({
   agent: "worker",
-  task: `<full implementer-prompt.md content with task fields filled in>`,
+  task: `<full content of ./implementer-prompt.md with task fields filled in>`,
   context: "fresh"
 })
 ```
@@ -143,7 +143,7 @@ After the worker reports DONE, capture the head SHA and dispatch:
 ```typescript
 subagent({
   agent: "reviewer",
-  task: `<full spec-reviewer-prompt.md content with task + worker report filled in>`,
+  task: `<full content of ./spec-reviewer-prompt.md with task + worker report filled in>`,
   context: "fresh"
 })
 ```
@@ -157,7 +157,7 @@ Only after spec compliance passes:
 ```typescript
 subagent({
   agent: "reviewer",
-  task: `<full code-quality-reviewer-prompt.md content with task + SHAs + diff summary>`,
+  task: `<full content of ./code-quality-reviewer-prompt.md with task + SHAs + diff summary>`,
   context: "fresh"
 })
 ```
@@ -332,7 +332,7 @@ You: I'm using Subagent-Driven Development to execute this plan.
 # Task 1: Hook installation script
 
 [Get Task 1 text and context (already extracted)]
-[Build implementer-prompt.md content with placeholders filled]
+[Build ./implementer-prompt.md content with placeholders filled]
 
 subagent({
   agent: "worker",
