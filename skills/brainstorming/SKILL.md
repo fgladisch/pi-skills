@@ -27,8 +27,9 @@ You MUST create a task for each of these items and complete them in order:
 4. **Present design** — in sections scaled to their complexity, get user approval after each section
 5. **Write design doc** — save to `docs/pi/specs/YYYY-MM-DD-<topic>-design.md` and commit
 6. **Spec self-review** — quick inline check for placeholders, contradictions, ambiguity, scope (see below)
-7. **User reviews written spec** — ask user to review the spec file before proceeding
-8. **Transition to implementation** — invoke writing-plans skill to create implementation plan
+7. **Spec document reviewer** — dispatch a `reviewer` subagent with `./spec-document-reviewer-prompt.md`; fix blocking issues
+8. **User reviews written spec** — ask user to review the spec file before proceeding
+9. **Transition to implementation** — invoke writing-plans skill to create implementation plan
 
 ## Process Flow
 
@@ -41,6 +42,8 @@ digraph brainstorming {
     "User approves design?" [shape=diamond];
     "Write design doc" [shape=box];
     "Spec self-review\n(fix inline)" [shape=box];
+    "Dispatch spec reviewer" [shape=box];
+    "Reviewer finds blocking issues?" [shape=diamond];
     "User reviews spec?" [shape=diamond];
     "Invoke writing-plans skill" [shape=doublecircle];
 
@@ -51,7 +54,10 @@ digraph brainstorming {
     "User approves design?" -> "Present design sections" [label="no, revise"];
     "User approves design?" -> "Write design doc" [label="yes"];
     "Write design doc" -> "Spec self-review\n(fix inline)";
-    "Spec self-review\n(fix inline)" -> "User reviews spec?";
+    "Spec self-review\n(fix inline)" -> "Dispatch spec reviewer";
+    "Dispatch spec reviewer" -> "Reviewer finds blocking issues?";
+    "Reviewer finds blocking issues?" -> "Write design doc" [label="yes, fix"];
+    "Reviewer finds blocking issues?" -> "User reviews spec?" [label="no"];
     "User reviews spec?" -> "Write design doc" [label="changes requested"];
     "User reviews spec?" -> "Invoke writing-plans skill" [label="approved"];
 }
@@ -114,10 +120,19 @@ After writing the spec document, look at it with fresh eyes:
 3. **Scope check:** Is this focused enough for a single implementation plan, or does it need decomposition?
 4. **Ambiguity check:** Could any requirement be interpreted two different ways? If so, pick one and make it explicit.
 
-Fix any issues inline. No need to re-review — just fix and move on.
+Fix any issues inline, then run the reviewer pass.
+
+**Spec Document Reviewer:**
+After self-review passes, dispatch a fresh-context `reviewer` subagent using `./spec-document-reviewer-prompt.md` (resolve relative to this `SKILL.md`):
+
+```typescript
+subagent({ agent: "reviewer", task: <filled template>, context: "fresh" })
+```
+
+Fill `[SPEC_FILE_PATH]` with the written spec path. If the reviewer returns `Issues Found`, fix every blocking issue and repeat self-review plus reviewer pass. Treat recommendations as advisory; apply them only when they materially improve implementation planning.
 
 **User Review Gate:**
-After the spec review loop passes, ask the user to review the written spec before proceeding:
+After the reviewer pass is approved, ask the user to review the written spec before proceeding:
 
 > "Spec written and committed to `<path>`. Please review it and let me know if you want to make any changes before we start writing out the implementation plan."
 

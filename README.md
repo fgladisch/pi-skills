@@ -27,7 +27,7 @@ ln -s ~/code/pi-skills/skills ~/.pi/agent/skills/pi-skills
 
 | Skill                            | When to use                                                                                                                                                                                           |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `brainstorming`                  | Before any creative work — explores intent, requirements, and design before implementation (uses [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select))              |
+| `brainstorming`                  | Before any creative work — explores intent, requirements, and design before implementation (uses [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select), [`pi-subagents`](https://github.com/nicobailon/pi-subagents)) |
 | `commit`                         | When the user asks to commit changes — creates git commits following the gitmoji convention (uses [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select))             |
 | `dispatching-parallel-agents`    | When facing 2+ independent tasks that can run without shared state (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                                                |
 | `finishing-a-development-branch` | When implementation is complete and ready for merge / PR / cleanup                                                                                                                                    |
@@ -85,7 +85,7 @@ Some skills depend on extension-provided tools. Install these before using the r
 | Extension                                                                              | Tool(s) provided | Required by skills                                                                                                   |
 | -------------------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------- |
 | [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select) | `user_select`    | `brainstorming`, `commit`, `grill-me`                                                                                |
-| [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development`, `using-skills`, `writing-skills` |
+| [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `brainstorming`, `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development`, `using-skills`, `writing-skills` |
 
 ## Pi-specific notes
 
