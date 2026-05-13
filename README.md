@@ -42,7 +42,6 @@ ln -s ~/code/pi-skills/skills ~/.pi/agent/skills/pi-skills
 | `using-skills`                   | When starting any conversation — establishes how to find and use pi skills                                                                                                                            |
 | `verification-before-completion` | Before claiming work is complete, fixed, or passing                                                                                                                                                   |
 | `writing-plans`                  | When you have a spec or requirements for a multi-step task                                                                                                                                            |
-| `writing-skills`                 | When creating or editing skills                                                                                                                                                                       |
 
 ## Skill dependency graph
 
@@ -81,7 +80,7 @@ Some skills depend on extension-provided tools. Install these before using the r
 | Extension                                                                              | Tool(s) provided | Required by skills                                                                                                   |
 | -------------------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------- |
 | [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select) | `user_select`    | `brainstorming`, `commit`, `grill-me`                                                                                |
-| [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `brainstorming`, `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development`, `using-skills`, `writing-skills` |
+| [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `brainstorming`, `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development`, `using-skills` |
 
 ## Pi-specific notes
 

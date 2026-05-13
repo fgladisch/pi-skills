@@ -29,7 +29,6 @@ If any of those checks fail, fix `README.md` (or the skill) before considering t
 - Each skill lives in its own directory: `skills/<skill-name>/SKILL.md`.
 - `SKILL.md` starts with YAML frontmatter containing `name` and `description`. The `description` is what pi shows in `<available_skills>` and is what tells the agent when to invoke the skill — keep it precise and trigger-oriented.
 - Supporting files (references, templates, examples) live alongside `SKILL.md` in the same directory and are referenced by relative path.
-- See the `writing-skills` skill for the full authoring guide.
 
 ## Pi conventions used in this repo
 
