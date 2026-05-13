@@ -129,6 +129,18 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
+## Plan Document Reviewer
+
+After self-review passes, dispatch a fresh-context `reviewer` subagent using `./plan-document-reviewer-prompt.md` (resolve relative to this `SKILL.md`):
+
+```typescript
+subagent({ agent: "reviewer", task: <filled template>, context: "fresh" })
+```
+
+Fill `[PLAN_FILE_PATH]` with the written plan path and `[SPEC_FILE_PATH]` with the source spec path. If no separate spec file exists, use the user's original request or the closest requirements document as the spec reference.
+
+If the reviewer returns `Issues Found`, fix every blocking issue and repeat self-review plus reviewer pass. Treat recommendations as advisory; apply them only when they materially improve implementation readiness.
+
 ## Execution Handoff
 
 After saving the plan, offer execution handoff:
