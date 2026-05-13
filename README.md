@@ -39,7 +39,6 @@ ln -s ~/code/pi-skills/skills ~/.pi/agent/skills/pi-skills
 | `subagent-driven-development`    | When executing implementation plans with independent tasks in the current session (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                                 |
 | `systematic-debugging`           | When encountering any bug, test failure, or unexpected behavior                                                                                                                                       |
 | `test-driven-development`        | When implementing any feature or bugfix                                                                                                                                                               |
-| `using-git-worktrees`            | When starting feature work that needs isolation from the current workspace                                                                                                                            |
 | `using-skills`                   | When starting any conversation — establishes how to find and use pi skills                                                                                                                            |
 | `verification-before-completion` | Before claiming work is complete, fixed, or passing                                                                                                                                                   |
 | `writing-plans`                  | When you have a spec or requirements for a multi-step task                                                                                                                                            |
@@ -55,7 +54,6 @@ flowchart TB
   B["brainstorming"]
   WP["writing-plans"]
   SDD["subagent-driven-development"]
-  WGW["using-git-worktrees"]
   RCR["requesting-code-review"]
   TDD["test-driven-development"]
   FDB["finishing-a-development-branch"]
@@ -70,10 +68,7 @@ flowchart TB
 
   SDD --> RCR
   SDD --> TDD
-  SDD --> WGW
   SDD --> FDB
-
-  WGW --> FDB
 
   SD --> TDD
   SD --> VBC

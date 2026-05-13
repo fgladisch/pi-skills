@@ -493,7 +493,6 @@ Done!
 ## Integration
 
 **Required workflow skills:**
-- **using-git-worktrees** — REQUIRED if your plan touches code on a busy branch; set up an isolated workspace before starting.
 - **writing-plans** — Creates the plan this skill executes.
 - **requesting-code-review** — Code review template referenced by `./code-quality-reviewer-prompt.md`.
 - **finishing-a-development-branch** — Run after all tasks plus the final review pass.
