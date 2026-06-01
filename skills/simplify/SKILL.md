@@ -89,3 +89,8 @@ When done, briefly summarize what was fixed (or confirm the code was already cle
 ```bash
 rm -rf "$findings_dir"
 ```
+
+## Related Skills
+
+- **requesting-code-review** - Use for broader review beyond reuse, quality, and efficiency cleanup.
+- **verification-before-completion** - Terminal gate for this workflow. Before claiming cleanup is complete, findings are handled, or the diff is clean, run fresh verification and report evidence.

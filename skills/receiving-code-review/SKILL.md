@@ -204,6 +204,12 @@ You understand 1,2,3,6. Unclear on 4,5.
 
 When replying to inline review comments on GitHub, reply in the comment thread (`gh api repos/{owner}/{repo}/pulls/{pr}/comments/{id}/replies`), not as a top-level PR comment.
 
+## Related Skills
+
+- **requesting-code-review** - Use when you need a fresh reviewer to re-check the changed work.
+- **simplify** - Use after implementing review feedback when the fixes touched code substantially, before final verification.
+- **verification-before-completion** - Terminal gate for this workflow. Before claiming review feedback is addressed, all items are fixed, or no regressions remain, run fresh verification and report evidence.
+
 ## The Bottom Line
 
 **External feedback = suggestions to evaluate, not orders to follow.**

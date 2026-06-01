@@ -144,7 +144,12 @@ Wait for the user's response. If they request changes, make them and re-run the 
 **Implementation:**
 
 - Invoke the writing-plans skill to create a detailed implementation plan
-- Do NOT invoke any other skill. writing-plans is the next step.
+- Do NOT invoke any other implementation skill. writing-plans is the next implementation step.
+
+## Related Skills
+
+- **writing-plans** - Next implementation workflow after the design/spec is approved.
+- **verification-before-completion** - Terminal gate for this workflow. Before claiming the design, spec, reviewer pass, or handoff is complete, run fresh verification and report evidence.
 
 ## Key Principles
 

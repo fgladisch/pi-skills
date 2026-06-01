@@ -69,3 +69,8 @@ Side effects happen inline as decisions crystallize:
 - **Sharpening a fuzzy term during the conversation?** Update `CONTEXT.md` right there.
 - **User rejects the candidate with a load-bearing reason?** Offer an ADR, framed as: _"Want me to record this as an ADR so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing — skip ephemeral reasons ("not worth it right now") and self-evident ones.
 - **Want to explore alternative interfaces for the deepened module?** See [INTERFACE-DESIGN.md](INTERFACE-DESIGN.md).
+
+## Related Skills
+
+- **brainstorming** - Use when a selected architecture candidate becomes a concrete design/spec.
+- **verification-before-completion** - Terminal gate for this workflow. Before claiming architecture exploration, candidate review, context updates, or ADR work is complete, run fresh verification and report evidence.

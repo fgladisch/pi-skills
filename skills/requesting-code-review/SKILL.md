@@ -95,6 +95,9 @@ You: [Fix progress indicators]
 - Review before merge
 - Review when stuck
 
+**Terminal Gate:**
+- Use **verification-before-completion** before claiming the review is complete, all findings are handled, the branch is ready, or requirements are met.
+
 ## Red Flags
 
 **Never:**

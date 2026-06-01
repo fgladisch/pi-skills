@@ -180,6 +180,11 @@ After agents return:
 3. **Run full suite** - Verify all fixes work together
 4. **Spot check** - Agents can make systematic errors
 
+## Related Skills
+
+- **pi-subagents** - Tool reference for parallel `subagent({...})` calls.
+- **verification-before-completion** - Terminal gate for this workflow. Before claiming parallel work is integrated, all fixes work together, or agent results are successful, run fresh verification and report evidence.
+
 ## Real-World Impact
 
 From debugging session (2025-10-03):

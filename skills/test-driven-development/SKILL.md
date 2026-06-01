@@ -361,6 +361,12 @@ When adding mocks or test utilities, read `./testing-anti-patterns.md` to avoid 
 - Adding test-only methods to production classes
 - Mocking without understanding dependencies
 
+## Related Skills
+
+- **systematic-debugging** - Use first when a bug, test failure, or unexpected behavior needs root-cause investigation.
+- **simplify** - Use after red-green-refactor work and before final verification/commit when the diff contains non-trivial code changes.
+- **verification-before-completion** - Terminal gate for this workflow. Before claiming the feature, bugfix, refactor, or test suite is complete/passing, run fresh verification and report evidence.
+
 ## Final Rule
 
 ```

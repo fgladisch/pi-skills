@@ -96,6 +96,7 @@ digraph process {
     "Read plan once, extract every task with full text, note context, create todo list" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Dispatch reviewer for whole-branch final review" [shape=box];
+    "Run simplify when code changes are non-trivial" [shape=box];
     "Use finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan once, extract every task with full text, note context, create todo list" -> "Dispatch worker (./implementer-prompt.md as task content)";
@@ -115,7 +116,8 @@ digraph process {
     "Mark task complete in your todo list" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch worker (./implementer-prompt.md as task content)" [label="yes"];
     "More tasks remain?" -> "Dispatch reviewer for whole-branch final review" [label="no"];
-    "Dispatch reviewer for whole-branch final review" -> "Use finishing-a-development-branch";
+    "Dispatch reviewer for whole-branch final review" -> "Run simplify when code changes are non-trivial";
+    "Run simplify when code changes are non-trivial" -> "Use finishing-a-development-branch";
 }
 ```
 
@@ -495,7 +497,9 @@ Done!
 **Required workflow skills:**
 - **writing-plans** — Creates the plan this skill executes.
 - **requesting-code-review** — Code review template referenced by `./code-quality-reviewer-prompt.md`.
-- **finishing-a-development-branch** — Run after all tasks plus the final review pass.
+- **simplify** — Run after all task/review loops and the final branch review when the branch contains non-trivial code changes; skip for docs-only, tiny mechanical edits, or equivalent code-quality review with no findings.
+- **finishing-a-development-branch** — Run after all tasks, final review, and simplify when applicable.
+- **verification-before-completion** — Terminal gate for this workflow. Before claiming a task, review loop, final branch review, delegated agent result, or handoff is complete, run fresh verification and report evidence.
 
 **Skills the dispatched agents lean on:**
 - **test-driven-development** — Workers follow TDD per task.

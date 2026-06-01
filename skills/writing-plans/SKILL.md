@@ -152,3 +152,8 @@ If you want, I can execute it now with subagent-driven-development: fresh subage
 **If user says yes:**
 - **REQUIRED SUB-SKILL:** Use subagent-driven-development
 - Fresh subagent per task + two-stage review
+
+## Related Skills
+
+- **subagent-driven-development** - Executes approved plans task-by-task with fresh workers and two-stage review.
+- **verification-before-completion** - Terminal gate for this workflow. Before claiming the plan, self-review, reviewer pass, or execution handoff is complete, run fresh verification and report evidence.

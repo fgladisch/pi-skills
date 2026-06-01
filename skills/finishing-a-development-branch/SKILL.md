@@ -9,7 +9,7 @@ description: Use when implementation is complete, all tests pass, and you need t
 
 Guide completion of development work by presenting clear options and handling chosen workflow.
 
-**Core principle:** Verify tests → Present options → Execute choice → Clean up.
+**Core principle:** Verify tests → simplify when useful → present options → execute choice → clean up.
 
 **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
 
@@ -35,7 +35,7 @@ Cannot proceed with merge/PR until tests pass.
 
 Stop. Don't proceed to Step 2.
 
-**If tests pass:** Continue to Step 2.
+**If tests pass:** If the branch contains non-trivial code changes and simplify has not run for this diff, use **simplify** before presenting finish options. Skip for docs-only changes, tiny mechanical edits, or when an equivalent code-quality review already ran and found no issues. Then continue to Step 2.
 
 ### Step 2: Determine Base Branch
 
@@ -194,3 +194,7 @@ git worktree remove <worktree-path>
 
 **Called by:**
 - **subagent-driven-development** - After all tasks and final review complete
+
+**Related skills:**
+- **simplify** - Use after tests pass and before presenting finish options when the branch contains non-trivial code changes.
+- **verification-before-completion** - Terminal gate for this workflow. Before claiming tests pass, merge/PR/discard/cleanup is complete, or the branch is ready, run fresh verification and report evidence.

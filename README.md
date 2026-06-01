@@ -39,7 +39,7 @@ ln -s ~/code/pi-skills/skills ~/.pi/agent/skills/pi-skills
 | `systematic-debugging`           | When encountering any bug, test failure, or unexpected behavior                                                                                                                                       |
 | `test-driven-development`        | When implementing any feature or bugfix                                                                                                                                                               |
 | `using-skills`                   | When starting any conversation — establishes how to find and use pi skills                                                                                                                            |
-| `verification-before-completion` | Before claiming work is complete, fixed, or passing                                                                                                                                                   |
+| `verification-before-completion` | Universal terminal gate after any task/workflow — before claiming work is complete, fixed, reviewed, ready, committed, merged, or passing                                                            |
 | `writing-plans`                  | When you have a spec or requirements for a multi-step task                                                                                                                                            |
 
 ## Skill dependency graph
@@ -57,7 +57,10 @@ flowchart TB
   FDB["finishing-a-development-branch"]
 
   SD["systematic-debugging"]
-  VBC["verification-before-completion"]
+  SIM["simplify"]
+  VBC["verification-before-completion<br/>(universal terminal gate)"]
+  TASKS["all task-producing skills<br/>(commit, reviews, architecture,<br/>delegation, planning)"]
+
   US --> B
   US --> SD
 
@@ -69,8 +72,14 @@ flowchart TB
   SDD --> FDB
 
   SD --> TDD
-  SD --> VBC
+
+  TASKS -. "after non-trivial code changes" .-> SIM
+  SIM -. "before completion/success claim" .-> VBC
+  TASKS -. "skip for docs/tiny edits" .-> VBC
+  SD -. "before fix complete" .-> VBC
 ```
+
+Dashed edges indicate terminal verification gates, not normal workflow order. `verification-before-completion` applies after every result-producing workflow, even when a skill does not show a direct edge above.
 
 ## Required extensions
 

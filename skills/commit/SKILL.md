@@ -29,6 +29,10 @@ Format: `<gitmoji> <type>: <description>`
 
 ## Execution Steps
 
+### Step 0: Verify Before Committing
+
+Use **verification-before-completion** before creating a commit unless the user explicitly requested a commit-only/no-verify workflow. Run the relevant fresh verification command(s), read the output, and include the evidence in the commit confirmation prompt.
+
 ### Step 1: Analyze Changes
 
 Run these commands (a single `bash` call with `&&` is fine):
@@ -107,6 +111,10 @@ If pre-commit hooks fail:
 2. Offer to fix the issues automatically
 3. Re-stage the fixed files and retry the commit
 4. Never use `--no-verify` unless the user explicitly requests it
+
+## Related Skills
+
+- **verification-before-completion** - Terminal gate for this workflow. Before committing or claiming the commit succeeded, run fresh verification and report evidence unless the user explicitly requested commit-only/no-verify.
 
 ## Important Rules
 

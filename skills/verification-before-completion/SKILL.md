@@ -1,6 +1,6 @@
 ---
 name: verification-before-completion
-description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always
+description: Use as the universal terminal gate after any task or workflow, before claiming work is complete, fixed, reviewed, ready, committed, merged, or passing - requires running verification commands and confirming output before making any success claims; evidence before assertions always
 ---
 
 # Verification Before Completion
@@ -129,6 +129,18 @@ From 24 failure memories:
 - Paraphrases and synonyms
 - Implications of success
 - ANY communication suggesting completion/correctness
+
+## Integration With Other Skills
+
+This skill is a universal terminal gate, not only a debugging follow-up.
+
+Any skill that produces a result MUST route through this skill before:
+- claiming the workflow is complete
+- saying tests, build, lint, review, or requirements pass
+- committing, opening a PR, merging, or moving to another task
+- reporting delegated agent work as successful
+
+Other skills may mention this in "Related Skills," but the rule applies even when they do not.
 
 ## The Bottom Line
 
