@@ -1,13 +1,13 @@
 ---
 name: brainstorming
-description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+description: "You MUST use this before any creative work - creating features, building components, adding functionality, modifying behavior, or evaluating a plan/design. Relentlessly explores user intent, requirements, trade-offs, and decision branches before implementation."
 ---
 
 # Brainstorming Ideas Into Designs
 
 Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
 
-Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design and get user approval.
+Start by understanding the current project context, then interview the user one decision at a time until the design is concrete. Walk the design tree branch-by-branch, resolve dependencies between choices, and provide your recommended answer with reasoning for every question. Once you understand what you're building, present the design and get user approval.
 
 <HARD-GATE>
 Do NOT invoke any implementation skill, write any code, scaffold any project, or take any implementation action until you have presented a design and the user has approved it. This applies to EVERY project regardless of perceived simplicity.
@@ -22,7 +22,7 @@ Every project goes through this process. A todo list, a single-function utility,
 You MUST create a task for each of these items and complete them in order:
 
 1. **Explore project context** — check files, docs, recent commits
-2. **Ask clarifying questions** — one at a time, understand purpose/constraints/success criteria
+2. **Interview branch-by-branch** — ask one question at a time, include your recommended answer, and resolve purpose/constraints/success criteria/decision dependencies
 3. **Propose 2-3 approaches** — with trade-offs and your recommendation
 4. **Present design** — in sections scaled to their complexity, get user approval after each section
 5. **Write design doc** — save to `docs/pi/specs/YYYY-MM-DD-<topic>-design.md` and commit
@@ -36,7 +36,7 @@ You MUST create a task for each of these items and complete them in order:
 ```dot
 digraph brainstorming {
     "Explore project context" [shape=box];
-    "Ask clarifying questions" [shape=box];
+    "Interview branch-by-branch" [shape=box];
     "Propose 2-3 approaches" [shape=box];
     "Present design sections" [shape=box];
     "User approves design?" [shape=diamond];
@@ -47,8 +47,8 @@ digraph brainstorming {
     "User reviews spec?" [shape=diamond];
     "Invoke writing-plans skill" [shape=doublecircle];
 
-    "Explore project context" -> "Ask clarifying questions";
-    "Ask clarifying questions" -> "Propose 2-3 approaches";
+    "Explore project context" -> "Interview branch-by-branch";
+    "Interview branch-by-branch" -> "Propose 2-3 approaches";
     "Propose 2-3 approaches" -> "Present design sections";
     "Present design sections" -> "User approves design?";
     "User approves design?" -> "Present design sections" [label="no, revise"];
@@ -72,10 +72,13 @@ digraph brainstorming {
 - Check out the current project state first (files, docs, recent commits)
 - Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., "build a platform with chat, file storage, billing, and analytics"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.
 - If the project is too large for a single spec, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own spec → plan → implementation cycle.
-- For appropriately-scoped projects, ask questions one at a time to refine the idea
-- Prefer multiple choice questions when possible, but open-ended is fine too. Use the `user_select` tool to ask multiple-choice questions.
-- Only one question per message - if a topic needs more exploration, break it into multiple questions
-- Focus on understanding: purpose, constraints, success criteria
+- For appropriately-scoped projects, interview relentlessly until the design is concrete
+- Walk down each branch of the design tree, resolving dependencies between decisions one-by-one
+- Ask exactly one question at a time; if a topic needs more exploration, split it into multiple questions
+- Prefer multiple choice questions when possible. Use the `user_select` tool whenever the answers can be expressed as concrete choices
+- For each question, provide your recommended answer and the reason for that recommendation
+- If a question can be answered by exploring the codebase, inspect the relevant files instead of asking the user
+- Focus on understanding: purpose, constraints, success criteria, trade-offs, and open decision branches
 
 **Exploring approaches:**
 
@@ -146,6 +149,7 @@ Wait for the user's response. If they request changes, make them and re-run the 
 ## Key Principles
 
 - **One question at a time** - Don't overwhelm with multiple questions
+- **Recommended answer every time** - Make your judgment explicit so the user can accept, reject, or correct it
 - **Multiple choice preferred** - Easier to answer than open-ended when possible
 - **YAGNI ruthlessly** - Remove unnecessary features from all designs
 - **Explore alternatives** - Always propose 2-3 approaches before settling

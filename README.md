@@ -27,11 +27,10 @@ ln -s ~/code/pi-skills/skills ~/.pi/agent/skills/pi-skills
 
 | Skill                            | When to use                                                                                                                                                                                           |
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `brainstorming`                  | Before any creative work — explores intent, requirements, and design before implementation (uses [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select), [`pi-subagents`](https://github.com/nicobailon/pi-subagents)) |
+| `brainstorming`                  | Before creative work or plan/design evaluation — relentlessly explores intent, requirements, trade-offs, and decision branches before implementation (uses [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select), [`pi-subagents`](https://github.com/nicobailon/pi-subagents)) |
 | `commit`                         | When the user asks to commit changes — creates git commits following the gitmoji convention (uses [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select))             |
 | `dispatching-parallel-agents`    | When facing 2+ independent tasks that can run without shared state (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                                                |
 | `finishing-a-development-branch` | When implementation is complete and ready for merge / PR / cleanup                                                                                                                                    |
-| `grill-me`                       | When user wants to stress-test a plan, get grilled on their design, or mentions "grill me" (uses [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select))              |
 | `improve-codebase-architecture`  | When user wants to improve architecture, find deep refactoring opportunities, consolidate tightly-coupled modules, or increase testability and AI navigability                                      |
 | `receiving-code-review`          | When receiving code review feedback, before implementing suggestions                                                                                                                                  |
 | `requesting-code-review`         | When completing tasks or major features, before merging (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                                                           |
@@ -79,7 +78,7 @@ Some skills depend on extension-provided tools. Install these before using the r
 
 | Extension                                                                              | Tool(s) provided | Required by skills                                                                                                   |
 | -------------------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select) | `user_select`    | `brainstorming`, `commit`, `grill-me`                                                                                |
+| [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select) | `user_select`    | `brainstorming`, `commit`                                                                                            |
 | [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `brainstorming`, `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development`, `using-skills` |
 
 ## Pi-specific notes
