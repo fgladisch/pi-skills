@@ -18,7 +18,9 @@ Use the `subagent` tool to launch all three reviewers concurrently in a single c
 **Always write findings to an OS temp directory, not the repo root.**
 
 ```bash
-findings_dir=$(mktemp -d "${TMPDIR:-/tmp}/simplify-findings-XXXXXX")
+tmp_dir=${TMPDIR:-/tmp}
+findings_dir=$(mktemp -d "${tmp_dir%/}/simplify-findings-XXXXXX")
+echo "$findings_dir"
 ```
 
 ```typescript
