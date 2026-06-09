@@ -31,7 +31,6 @@ ln -s ~/code/pi-skills/skills ~/.pi/agent/skills/pi-skills
 | `commit`                         | When the user asks to commit changes — creates git commits following the gitmoji convention (uses [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select))             |
 | `dispatching-parallel-agents`    | When facing 2+ independent tasks that can run without shared state (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                                                |
 | `finishing-a-development-branch` | When implementation is complete and ready for merge / PR / cleanup                                                                                                                                    |
-| `improve-codebase-architecture`  | When user wants to improve architecture, find deep refactoring opportunities, consolidate tightly-coupled modules, or increase testability and AI navigability                                      |
 | `receiving-code-review`          | When receiving code review feedback, before implementing suggestions                                                                                                                                  |
 | `requesting-code-review`         | After completing implementation tasks or major features, before claiming ready or merging (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                        |
 | `simplify`                       | After making code changes, before committing — reviews the diff for reuse, quality, and efficiency in parallel and fixes findings (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents)) |
@@ -56,7 +55,7 @@ flowchart TB
   SD["systematic-debugging"]
   SIM["simplify"]
   VBC["verification-before-completion<br/>(universal terminal gate)"]
-  TASKS["all task-producing skills<br/>(commit, reviews, architecture,<br/>delegation, planning)"]
+  TASKS["all task-producing skills<br/>(commit, reviews,<br/>delegation, planning)"]
 
   B --> WP
   WP --> SDD
