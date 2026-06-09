@@ -1,6 +1,6 @@
 ---
 name: test-driven-development
-description: Use when implementing any feature or bugfix, before writing implementation code
+description: Use after planning/brainstorming when implementation begins for any feature or bugfix, before writing production code; requires tests first and red-green verification.
 ---
 
 # Test-Driven Development (TDD)

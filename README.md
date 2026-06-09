@@ -33,22 +33,19 @@ ln -s ~/code/pi-skills/skills ~/.pi/agent/skills/pi-skills
 | `finishing-a-development-branch` | When implementation is complete and ready for merge / PR / cleanup                                                                                                                                    |
 | `improve-codebase-architecture`  | When user wants to improve architecture, find deep refactoring opportunities, consolidate tightly-coupled modules, or increase testability and AI navigability                                      |
 | `receiving-code-review`          | When receiving code review feedback, before implementing suggestions                                                                                                                                  |
-| `requesting-code-review`         | When completing tasks or major features, before merging (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                                                           |
+| `requesting-code-review`         | After completing implementation tasks or major features, before claiming ready or merging (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                        |
 | `simplify`                       | After making code changes, before committing — reviews the diff for reuse, quality, and efficiency in parallel and fixes findings (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents)) |
-| `subagent-driven-development`    | When executing implementation plans with independent tasks in the current session (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                                                 |
+| `subagent-driven-development`    | After an implementation plan exists and contains independent tasks that can be delegated in the current session (uses [`pi-subagents`](https://github.com/nicobailon/pi-subagents))                  |
 | `systematic-debugging`           | When encountering any bug, test failure, or unexpected behavior                                                                                                                                       |
-| `test-driven-development`        | When implementing any feature or bugfix                                                                                                                                                               |
-| `using-skills`                   | When starting any conversation — establishes how to find and use pi skills                                                                                                                            |
+| `test-driven-development`        | When planned implementation begins for any feature or bugfix, before writing production code                                                                                                          |
 | `verification-before-completion` | Universal terminal gate after any task/workflow — before claiming work is complete, fixed, reviewed, ready, committed, merged, or passing                                                            |
-| `writing-plans`                  | When you have a spec or requirements for a multi-step task                                                                                                                                            |
+| `writing-plans`                  | After an approved design/spec or clear requirements exist, before implementing a multi-step task                                                                                                      |
 
 ## Skill dependency graph
 
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 50, 'rankSpacing': 100}} }%%
 flowchart TB
-  US["using-skills"]
-
   B["brainstorming"]
   WP["writing-plans"]
   SDD["subagent-driven-development"]
@@ -60,9 +57,6 @@ flowchart TB
   SIM["simplify"]
   VBC["verification-before-completion<br/>(universal terminal gate)"]
   TASKS["all task-producing skills<br/>(commit, reviews, architecture,<br/>delegation, planning)"]
-
-  US --> B
-  US --> SD
 
   B --> WP
   WP --> SDD
@@ -88,7 +82,7 @@ Some skills depend on extension-provided tools. Install these before using the r
 | Extension                                                                              | Tool(s) provided | Required by skills                                                                                                   |
 | -------------------------------------------------------------------------------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------- |
 | [`@fgladisch/pi-user-select`](https://www.npmjs.com/package/@fgladisch/pi-user-select) | `user_select`    | `brainstorming`, `commit`                                                                                            |
-| [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `brainstorming`, `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development`, `using-skills` |
+| [`pi-subagents`](https://github.com/nicobailon/pi-subagents)                           | `subagent`       | `brainstorming`, `dispatching-parallel-agents`, `requesting-code-review`, `simplify`, `subagent-driven-development` |
 
 ## Pi-specific notes
 

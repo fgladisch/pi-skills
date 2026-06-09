@@ -1,6 +1,6 @@
 ---
 name: requesting-code-review
-description: Use when completing tasks, implementing major features, or before merging to verify work meets requirements
+description: Use after completing an implementation task or major feature, and before claiming ready/merge, to verify the work meets requirements via a focused reviewer subagent.
 ---
 
 # Requesting Code Review
